@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-03-08T19:45:16 IST" name="Default suite" finished-at="2022-03-08T19:45:19 IST" duration-ms="3162">
+    <groups>
+    </groups>
+    <test started-at="2022-03-08T19:45:16 IST" name="Default test" finished-at="2022-03-08T19:45:19 IST" duration-ms="3162">
+      <class name="restapiautomation.SumValidation">
+        <test-method signature="sumOfCourses()[pri:0, instance:restapiautomation.SumValidation@49912c99]" started-at="2022-03-08T19:45:16 IST" name="sumOfCourses" finished-at="2022-03-08T19:45:19 IST" duration-ms="3066" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- sumOfCourses -->
+      </class> <!-- restapiautomation.SumValidation -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
