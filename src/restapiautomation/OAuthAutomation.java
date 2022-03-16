@@ -1,16 +1,26 @@
 package restapiautomation;
 import static io.restassured.RestAssured.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 
+import io.restassured.parsing.Parser;
 import io.restassured.path.json.JsonPath;
+import pojo.Api;
+import pojo.GetCourse;
+import pojo.WebAutomation;
 
 public class OAuthAutomation {
 
 	public static void main(String[] args) throws InterruptedException {
+		String[] courseTitles = {"Selenium Webdriver Java","Cypress","Protractor"};
 
 		/*System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
 		WebDriver driver = new ChromeDriver();
@@ -23,7 +33,7 @@ public class OAuthAutomation {
 		driver.findElement(By.cssSelector("input[type='password']")).sendKeys(Keys.ENTER);
 		Thread.sleep(4000);
 		String url = driver.getCurrentUrl(); */
-		String url = "https://rahulshettyacademy.com/getCourse.php?code=4%2F0AX4XfWghl6eTH3VXfkQ1BkgfIgYuWmmQtf_ER07h-YYCDB7PiDBpkb7Lmsz5WNQngB6E0w&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=1&prompt=consent";
+		String url = "https://rahulshettyacademy.com/getCourse.php?code=4%2F0AX4XfWjPgzplbIMVl-2a6dVfeOS8HuJUzGG2ktuAT9cwI9hylOHoifJfoB-wT0mN3zrG4A&scope=email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=1&prompt=none";
 		String partialcode = url.split("code=")[1];
 		String code = partialcode.split("&scope")[0];
 		System.out.println(code);
@@ -41,10 +51,32 @@ public class OAuthAutomation {
 		String accessToken = js.getString("access_token");
 		
 		//Get access token using code generated previous section
-		String response = given().queryParam("access_token",accessToken)
-		.when().log().all()
-		.get("https://rahulshettyacademy.com/getCourse.php").asString();
-		System.out.println(response);
+		GetCourse gc = given().queryParam("access_token",accessToken).expect().defaultParser(Parser.JSON)
+		.when()
+		.get("https://rahulshettyacademy.com/getCourse.php").as(GetCourse.class);
+		
+		System.out.println(gc.getLinkedIn());
+		System.out.println(gc.getInstructor());
+		System.out.println(gc.getCourses().getApi().get(1).getCourseTitle());
+		
+		//1.Get price of Course title having soapui webservices testing 
+		List<Api> apiCourses = gc.getCourses().getApi();
+		for(int i=0;i<apiCourses.size();i++)
+		{
+			if(apiCourses.get(i).getCourseTitle().equalsIgnoreCase("SoapUI Webservices testing"))
+			{
+				System.out.println(apiCourses.get(i).getPrice());
+			}
+		}
+		
+		//2.Get the course Names of WebAutomation and assert it with expected list
+		ArrayList<String> a = new ArrayList<String>();
+		List<WebAutomation> w = gc.getCourses().getWebAutomation();
+		for(int j=0;j<w.size();j++)
+		{
+			a.add(w.get(j).getCourseTitle());
+		}
+		List<String> expectedList = Arrays.asList(courseTitles);
+		Assert.assertTrue(a.equals(expectedList));
 	}
-
 }
