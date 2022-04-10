@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-03-09T17:27:53 IST" name="Default suite" finished-at="2022-03-09T17:27:57 IST" duration-ms="3822">
+  <suite started-at="2022-04-10T18:27:24 IST" name="Default suite" finished-at="2022-04-10T18:27:30 IST" duration-ms="5601">
     <groups>
     </groups>
-    <test started-at="2022-03-09T17:27:53 IST" name="Default test" finished-at="2022-03-09T17:27:57 IST" duration-ms="3822">
-      <class name="files.DynamicJson">
-        <test-method signature="addBook()[pri:0, instance:files.DynamicJson@49912c99]" started-at="2022-03-09T17:27:53 IST" name="addBook" finished-at="2022-03-09T17:27:57 IST" duration-ms="3740" status="PASS">
+    <test started-at="2022-04-10T18:27:24 IST" name="Default test" finished-at="2022-04-10T18:27:30 IST" duration-ms="5601">
+      <class name="restapiautomation.excelDriven">
+        <test-method signature="addBook()[pri:0, instance:restapiautomation.excelDriven@21282ed8]" started-at="2022-04-10T18:27:24 IST" name="addBook" finished-at="2022-04-10T18:27:30 IST" duration-ms="5524" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- addBook -->
-      </class> <!-- files.DynamicJson -->
+      </class> <!-- restapiautomation.excelDriven -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
